@@ -17,13 +17,17 @@ public class S3TrainingObject extends ObjectStorage {
     // @Value("${bucketName}")
     private final String bucketName;
 
+    // @Value("${logPath}")
+    private final String logPath;
+
     public S3TrainingObject() {
         s3client = AmazonS3ClientBuilder
                 .standard()
                 .withRegion(Regions.US_EAST_2)
                 .build();
-                
+
         bucketName = "kamneklogs";
+        logPath = "analytics/logs/";
     }
 
     @Override
@@ -32,7 +36,9 @@ public class S3TrainingObject extends ObjectStorage {
             File file = toJsonFile(log);
             s3client.putObject(
                     bucketName,
-                    log.getClass().getSimpleName() + "/" + file.getName(),
+                    logPath
+                            + log.getClass().getSimpleName()
+                            + "/" + file.getName(),
                     file);
 
             file.delete();
