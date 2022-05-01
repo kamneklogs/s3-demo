@@ -10,7 +10,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import s3.demo.logs.Loggable;
 import s3.demo.storage.ObjectStorage;
 
-public class S3TrainingObject extends ObjectStorage {
+public class MyS3Object extends ObjectStorage {
 
     private final AmazonS3 s3client;
 
@@ -20,7 +20,7 @@ public class S3TrainingObject extends ObjectStorage {
     // @Value("${logPath}")
     private final String logPath;
 
-    public S3TrainingObject() {
+    public MyS3Object() {
         s3client = AmazonS3ClientBuilder
                 .standard()
                 .withRegion(Regions.US_EAST_2)
